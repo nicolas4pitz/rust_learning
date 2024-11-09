@@ -1,3 +1,5 @@
+use std::{io, vec};
+
 enum SpreadsheetCell {
     Int(i32),
     Float(f64),
@@ -43,4 +45,22 @@ fn main() {
         }
     }
 
+    let mut vetor:Vec<i32> = vec![];
+
+    println!("Saia com '666'");
+    loop {
+        println!("Digite o numero para aumentar o vetor: ");
+        let mut palpite= String::new();
+        io::stdin().read_line(&mut palpite) //Standard input = stdin -> Stdin
+            .expect("Falha ao ler a entrada");
+        if palpite.trim() == "666" {
+            break;
+        }
+        vetor.push(palpite.trim().parse().unwrap());
+    }
+
+    println!("Vetor: {:?}", vetor);
+
 }
+
+
