@@ -7,6 +7,16 @@ enum SpreadsheetCell {
 }
 
 fn main() {
+    //storing_vector();
+
+    //////
+    
+    storing_utf8();
+
+}
+
+
+fn storing_vector() {
     let mut v: Vec<i32> = Vec::new();
     v.push(10);
     v.push(20);
@@ -60,6 +70,26 @@ fn main() {
     }
 
     println!("Vetor: {:?}", vetor);
+}
+
+fn storing_utf8() {
+    let mut s = String::from("Ola");
+    s.push_str(", mundo!");
+    println!("{}", s);
+
+    let s1 = String::from("Rust");
+    let s2 = String::from("Lang");
+
+    let s3 = s1 + " " + &s2;
+    println!("{}", s3);
+
+    let s4 = format!("{} é incrivel!", s2);
+    println!("{}", s4);
+
+    let s = String::from("Olá");
+    for c in s.chars() {
+        println!("{}", c);
+    }
 
 }
 
