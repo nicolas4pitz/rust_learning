@@ -1,4 +1,6 @@
 use std::{io, vec};
+use std::collections::HashMap;
+
 
 enum SpreadsheetCell {
     Int(i32),
@@ -11,8 +13,11 @@ fn main() {
 
     //////
     
-    storing_utf8();
+    //storing_utf8();
 
+    //
+
+    storing_hash_map();
 }
 
 
@@ -93,4 +98,28 @@ fn storing_utf8() {
 
 }
 
+fn storing_hash_map() {
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Time A"), 10);
+    scores.insert(String::from("Time B"), 20);
+
+    println!("{:?}", scores);
+
+    for (kit, value) in &scores {
+        println!("{}: {}", kit, value);
+    }
+
+    match scores.get("Time A") {
+        Some(value) => println!("Pontuação: {}", value),
+        None => println!("Time não encontrado"),
+    }
+
+    scores.insert(String::from("Time A"), 15);
+
+    scores.entry(String::from("Time B")).or_insert(25);
+
+    println!("{:?}", scores);
+    
+}
 
