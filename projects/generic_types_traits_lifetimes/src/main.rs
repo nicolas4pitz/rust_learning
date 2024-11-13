@@ -29,52 +29,57 @@
 //     }
 // } Parte de generic
 
+//Traits definition
+// pub trait Summary {
+//     fn summarize(&self) -> String;
+//     fn summarize_author(&self) -> String;
+// }
 
-pub trait Summary {
-    fn summarize(&self) -> String;
-    fn summarize_author(&self) -> String;
-}
+// pub struct NewsArticle {
+//     pub headline: String,
+//     pub location: String,
+//     pub author: String,
+//     pub content: String,
+// }
 
-pub struct NewsArticle {
-    pub headline: String,
-    pub location: String,
-    pub author: String,
-    pub content: String,
-}
+// impl Summary for NewsArticle {
+//     fn summarize(&self) -> String {
+//         format!("{}, by {} ({})", self.headline, self.author, self.location)
+//     }
 
-impl Summary for NewsArticle {
-    fn summarize(&self) -> String {
-        format!("{}, by {} ({})", self.headline, self.author, self.location)
-    }
+//     fn summarize_author(&self) -> String {
+//         format!("@{}", self.author)
+//     }
+// }
 
-    fn summarize_author(&self) -> String {
-        format!("@{}", self.author)
-    }
-}
+// pub struct Tweet {
+//     pub username: String,
+//     pub content: String,
+//     pub reply: bool,
+//     pub retweet: bool,
+// }
 
-pub struct Tweet {
-    pub username: String,
-    pub content: String,
-    pub reply: bool,
-    pub retweet: bool,
-}
+// impl Summary for Tweet{
+//     fn summarize(&self) -> String {
+//         format!("{}: {}", self.username, self.content)
+//     }
 
-impl Summary for Tweet{
-    fn summarize(&self) -> String {
-        format!("{}: {}", self.username, self.content)
-    }
-
-    fn summarize_author(&self) -> String {
-        format!("@{}", self.username)
-    }
-}
+//     fn summarize_author(&self) -> String {
+//         format!("@{}", self.username)
+//     }
+// } 
 
 // fn notify(item: &impl Summary) {
 //     println!("Breaking news! {}", item.summarize());
 // }
 
-pub fn notify<T: Summary>(item: &T) {
-    println!("Breaking news! {}", item.summarize());
+// pub fn notify<T: Summary>(item: &T) {
+//     println!("Breaking news! {}", item.summarize());
+// } traits definition 
+
+struct Livro<'a>{
+    titulo: &'a str,
+    autor: &'a str,
 }
 
 fn main() {
@@ -84,7 +89,14 @@ fn main() {
     //point_impl();
     //mexer_genericos();
 
-    tweet();
+    //tweet();
+
+    let texto1 = "Ola";
+    let texto2 = "Mundo";
+    let resultado = maior_texto(texto1, texto2);
+    println!("Maior texto: {}", resultado);
+
+    livro_struic();
 }
 
 // fn maior<T: PartialOrd>(a: T, b: T) -> T {
@@ -119,14 +131,29 @@ fn main() {
 //     println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
 // }
 
-fn tweet(){
-    let tweet = Tweet {
-        username: String::from("horse_benjack"),
-        content: String::from("of course, probaly"),
-        reply: false,
-        retweet: false,
-    };
+// fn tweet(){
+//     let tweet = Tweet {
+//         username: String::from("horse_benjack"),
+//         content: String::from("of course, probaly"),
+//         reply: false,
+//         retweet: false,
+//     };
 
-    println!("1 new tweet: {}", tweet.summarize());
-    println!("Author: {}", tweet.summarize_author())
+//     println!("1 new tweet: {}", tweet.summarize());
+//     println!("Author: {}", tweet.summarize_author())
+// } traits definition 
+
+fn maior_texto<'a>(a: &'a str, b: &'a str) -> &'a str {
+    if a.len() > b.len() {
+        a
+    } else {
+        b
+    }
+}
+
+fn livro_struic() {
+    let titulo = "Rust Book";
+    let autor = "Steve Klanb";
+    let livro = Livro {titulo, autor};
+    println!("Livro: '{}' por {}", livro.titulo, livro.autor);
 }
