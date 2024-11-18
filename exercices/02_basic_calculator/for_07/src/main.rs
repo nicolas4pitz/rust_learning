@@ -1,16 +1,14 @@
-fn main(){
-  
+fn main() {
+    factorial(20);
 }
 
-fn factorial (number: u32) -> u32 {
-    let mut contador = 1;
-    let mut result: u32 = 1;
-    while contador <= number {
-        result *= contador;
-        //println!("result: {}", result);
-        contador+=1;
-    }
-    result
+pub fn factorial(n: u32) -> u32{
+  let mut result: u32 = 1;
+  for i in 1..=n{
+    result*=i;
+  }
+  println!("{}", result);
+  result
 }
 
 #[cfg(test)]
